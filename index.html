@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lista de Tarefas — AV1</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Lista de Tarefas</h1>
+
+      <form id="task-form" class="form">
+        <label for="task-input" class="sr-only">Nova tarefa</label>
+        <input id="task-input" name="task" type="text" placeholder="Digite uma nova tarefa" />
+        <button type="submit">Adicionar</button>
+      </form>
+
+      <p id="error-message" class="error" aria-live="polite"></p>
+
+      <section>
+        <h2>Minhas tarefas</h2>
+        <ul id="task-list" class="task-list" aria-live="polite"></ul>
+      </section>
+
+      <footer class="footer">Entrega: 27/02 — Projeto AV1 (Create + Read)</footer>
+    </main>
+
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
