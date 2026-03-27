@@ -1,4 +1,4 @@
-// Lista de Tarefas - Versão Iniciante
+//Lista de Tarefas - Versão Iniciante 
 
 // guarda as tarefas
 var tarefas = [];
@@ -18,9 +18,15 @@ function mostrarTarefas() {
     return;
   }
 
-  for (var i = 0; i < tarefas.length; i++) {
-    var li = document.createElement('li');
-    li.innerHTML = tarefas[i] + '<button class="remove-btn" onclick="remover(' + i + ')">Remover</button>';
+  for (let i = 0; i < tarefas.length; i++) {
+    let li = document.createElement('li');
+
+    li.innerHTML = `
+      <span id="texto-${i}">${tarefas[i]}</span>
+      <button onclick="editar(${i})">Editar</button>
+      <button class="remove-btn" onclick="remover(${i})">Remover</button>
+    `;
+
     list.appendChild(li);
   }
 }
@@ -34,6 +40,32 @@ function adicionarTarefa(texto) {
   
   tarefas.push(texto);
   input.value = '';
+  errorMessage.textContent = '';
+  mostrarTarefas();
+}
+
+// editar tarefa (sem popup)
+function editar(index) {
+  const li = list.children[index];
+
+  li.innerHTML = `
+    <input type="text" id="edit-input-${index}" value="${tarefas[index]}">
+    <button onclick="salvar(${index})">Salvar</button>
+    <button onclick="mostrarTarefas()">Cancelar</button>
+  `;
+}
+
+// salvar edição
+function salvar(index) {
+  const inputEdit = document.getElementById(`edit-input-${index}`);
+  const novoTexto = inputEdit.value;
+
+  if (novoTexto.trim() === '') {
+    errorMessage.textContent = 'A tarefa não pode ficar vazia!';
+    return;
+  }
+
+  tarefas[index] = novoTexto;
   errorMessage.textContent = '';
   mostrarTarefas();
 }
